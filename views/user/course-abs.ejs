@@ -1,0 +1,88 @@
+<%- include('../include/header.ejs') %> <%- include('../include/nav.ejs') %> 
+
+  <main class="course__abs">
+    <h1 class="main__title">
+      <%= course.name %>
+    </h1>
+
+
+    <div class="exam__committee__info">
+      <% if(user.isAdmin) { %>
+
+        <div class="instrs">
+          <h3 class="instr"><%= "المراقب المشرف: أ. " + user.name %></h3>
+          <h3 class="instr"><%= "المراقب المساعد: أ. " + secInstr.name %></h3>
+        </div>
+        
+      <% } %>
+
+      <% if(!user.isAdmin) { %>
+
+        <div class="instrs">
+          <h3 class="instr"><%= "المراقب المشرف: أ. " + secInstr.name %></h3>
+          <h3 class="instr"><%= "المراقب المساعد: أ. " + user.name %></h3>
+        </div>
+        
+      <% } %>
+      <h3><%= "اللجنة: " + user.examCommitteeNumber %></h3>
+
+
+    </div>
+    
+
+    <div class="table__container">
+      <table class="print__table">
+
+        <tr>
+          <th>الاسم</th>
+          <th>رقم الجلوس</th>
+          <th>الفصل الدراسي</th>
+          <th>حضور</th>
+          <th>انصراف</th>
+        </tr>
+
+        <% for(let student of students) { %>
+          <tr>
+            <td><%= student.name %></td>
+            <td><%= student.sittingArea %></td>
+            <td><%= student.grade %></td>
+            <% for(let studentCourse of student.courseAttend) { %>
+              <% if(studentCourse.courseId.toString() === course._id.toString()) { %>
+                <td><%= studentCourse.attend ? "نعم" : "لا" %></td>
+              <% } %>
+            <% } %>
+
+            <% for(let studentCourse of student.courseAttend) { %>
+              <% if(studentCourse.courseId.toString() === course._id.toString()) { %>
+                <td><%= studentCourse.depr ? "نعم" : "لا" %></td>
+              <% } %>
+            <% } %>
+          </tr>
+        <% } %>
+
+      </table>
+    </div>
+
+    <div class="numberic__stats">
+      <h3><%= "عدد الحاضرين: " + students.length + " / " + totalComers %></h3>
+      <h3><%= "عدد المحاضر: " + totalCheating %></h3>
+    </div>
+
+
+    <div class="students__action">
+      <% if(user.isAdmin) { %>
+        <form action="/take-came-students/<%= course._id %>" method="get">
+          <button class="btn__main">تسجيل الحضور</button>
+        </form>
+        <form action="/take-went-students/<%= course._id %>" method="get">
+          <button class="btn__main">تسجيل الانصراف</button>
+        </form>
+      <% } %>
+      
+      <button class="btn__main print__btn"><i class="fa-solid fa-print"></i> طباعة الحضور</button>
+      <a class="btn__main fraud__btn" href="/fraud-report/<%= course._id %>"> عمل محضر </a>
+    </div>
+
+  </main>
+
+<%- include('../include/footer.ejs') %>

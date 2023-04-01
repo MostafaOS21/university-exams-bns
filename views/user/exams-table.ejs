@@ -1,0 +1,100 @@
+<%- include('../include/header.ejs') %> <%- include('../include/nav.ejs') %> 
+
+<main class="exams__table">
+  <div class="user__info">
+
+    <% if(isInstr) { %>
+      
+      <h1 class="instr__tole main__title">
+        <%= user[0].isAdmin ? "حساب المراقب المشرف" : "حساب المراقب المساعد" %>
+      </h1>
+      
+      <% if(user[0].isAdmin) { %>
+        <h3 class="user__name">
+          <%=  " المراقب المشرف: أ. " + user[0].name %>
+        </h3>
+        <h3 class="user__name">
+          <%=  " المراقب المساعد: أ. " + user[1].name %>
+        </h3>
+      <% } %>
+      
+      <% if(!user[0].isAdmin) { %>
+        <h3 class="user__name">
+          <%=  " المراقب المشرف: أ. " + user[1].name %>
+        </h3>
+        <h3 class="user__name">
+          <%=  " المراقب المساعد: أ. " + user[0].name %>
+        </h3>
+      <% } %>
+      
+    <% } %>
+
+    <% if(!isInstr) { %>
+      
+      <h1 class="main__title">
+        جدول امتحان الطالب 
+      </h1>
+      
+      <h3 class="user__name">
+        <%= "اسم الطالب:" + user.name %>
+      </h3>
+      <h3 class="student__grade">
+        <%= "السنة الدراسية: " + user.grade %>
+      </h3>
+      
+    <% } %>
+
+    <button class="btn__main print__btn"><i class="fa-solid fa-print"></i> طباعة</button>
+  </div>
+
+  <div class="table__container">
+    <table class="print__table">
+      <tr>
+        <th>الكورس</th>
+        <th>اللجنة</th>
+        
+
+        <% if(!isInstr) { %>
+          <th>رقم الجلوس</th>
+          <% }%>
+
+          <% if(isInstr) { %>
+            <th>عدد المسجلين</th>
+            <% }%>
+          
+        <th>التاريخ</th>
+        <th>البداية</th>
+        <th>النهاية</th>
+      </tr>
+      
+      <!--  -->
+      <% for(let i = 0; i < courses.length; i++) { %>
+        <tr class="<%= i % 2 === 0 ? "even" : "" %>">
+          <td><%= courses[i].name %></td>
+          
+          <% if(isInstr) { %>
+            <td><%= user[0].examCommitteeNumber %></td>
+          <% } %>
+
+          <% if(!isInstr) { %>
+            <td><%= user.examCommitteeNumber %></td>
+          <% } %>
+          
+          <% if(!isInstr) { %>
+            <td><%= user.sittingArea %></td>
+          <% }%>
+
+          <% if(isInstr) { %>
+            <td><%= courses[i].numberOfStudents %> طالب </td>
+          <% }%>
+          <td><%= courses[i].start[0] %></td>
+          <td><%= courses[i].start[1] %></td>
+          <td><%= courses[i].end[1] %></td>
+        </tr>
+      <% } %>
+
+    </table>
+  </div>
+</main>
+
+<%- include('../include/footer.ejs') %>

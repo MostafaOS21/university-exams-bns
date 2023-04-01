@@ -1,0 +1,93 @@
+<%- include('../include/header.ejs') %> <%- include('../include/nav.ejs') %> 
+
+  <main class="take__came__students">
+    <h1 class="main__title">
+      <%= attendence ? "الحضور: " : "انصراف: " %>  <%= course.name %>
+    </h1>
+
+    <div class="exam__committee__info">
+      <% if(user.isAdmin) { %>
+
+        <div class="instrs">
+          <h3 class="instr"><%= "المراقب المشرف: أ. " + user.name %></h3>
+          <h3 class="instr"><%= "المراقب المساعد: أ. " + secInstr.name %></h3>
+        </div>
+        
+      <% } %>
+
+      <% if(!user.isAdmin) { %>
+
+        <div class="instrs">
+          <h3 class="instr"><%= "المراقب المشرف: أ. " + secInstr.name %></h3>
+          <h3 class="instr"><%= "المراقب المساعد: أ. " + user.name %></h3>
+        </div>
+        
+      <% } %>
+
+      <h3><%= "اللجنة: " + user.examCommitteeNumber %></h3>
+
+      <h3><%= "عدد الطلاب: " + students.length %></h3>
+    </div>
+
+    <div class="table__container">
+      <form action="<%= attendence ? "/get-all-came/" : "/take-went-students/" %><%= course._id %>"
+          method="post">
+        <table class="print__table">
+
+          <tr>
+            <th>الطالب</th>
+            <th><%= attendence ? "حضور" : "انصراف" %> </th>
+          </tr>
+
+          <% for(let student of students) { %>
+            <tr>
+              <td><%= student.name %> - <%= student.sittingArea %></td>
+              
+
+              <% for(let studentCourse of student.courseAttend) { %>
+                <% if(studentCourse.courseId.toString() === course._id.toString()) { %>
+                  <td>
+                    <% if(studentCourse.attend && attendence) { %>
+                      <input type="checkbox" 
+                        name="<%= student._id %>" 
+                        class="student__check" 
+                        checked
+                      />
+                    <% } %>
+
+                    <% if(studentCourse.depr && !attendence) { %>
+                      <input type="checkbox" 
+                        name="<%= student._id %>" 
+                        class="student__check" 
+                        checked
+                      />
+                    <% } %>
+
+                    <% if(!studentCourse.attend && attendence) { %>
+                      <input type="checkbox" 
+                        name="<%= student._id %>" 
+                        class="student__check" 
+                      />
+                    <% } %>
+
+                    <% if(!studentCourse.depr && !attendence) { %>
+                      <input type="checkbox" 
+                        name="<%= student._id %>" 
+                        class="student__check" 
+                      />
+                    <% } %>
+                  </td>
+                <% } %>
+              <% } %>
+            </tr>
+          <% } %>
+
+        </table>
+
+        <button class="btn__main only__btn"> <i class="fa-solid fa-check"></i> تحضير الكل </button>
+      </form>
+    </div>
+
+  </main>
+
+<%- include('../include/footer.ejs') %>

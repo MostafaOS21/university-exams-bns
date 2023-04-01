@@ -1,0 +1,72 @@
+<nav>
+  <div class="show__menu">
+    <i class="fa-solid fa-bars fa-2xl"></i>
+  </div>
+
+  <ul class="menu__list">
+    <div class="close__menu">
+      <i class="fa-solid fa-xmark fa-xl"></i>
+    </div>
+
+    <li>
+      <a href="/" 
+      class="btn <%= path === "/" ? "active" : "" %>"
+      >
+        <i class="fa-solid fa-house"></i> الصفحة الرئيسية
+      </a>
+    </li>
+
+    <% if(!isAuthed) { %>
+      <li>
+        <a href="/login" 
+        class="btn <%= path === "/login" ? "active" : "" %>"
+        >
+          <i class="fa-solid fa-arrow-right-to-bracket"></i> تسجيل الدخول
+        </a>
+      </li>
+    <% } %>
+    <% if(isAuthed) { %>
+
+      <% if(isInstr) { %>
+        <li>
+          <a href="/students-absense/<%= userId %>" 
+          class="btn <%= path === "/students-absense" ? "active" : "" %>"
+          >
+          <i class="fa-solid fa-list-check"></i> تسجيل الغياب
+          </a>
+        </li>
+      <% } %>
+
+      <% if(!isInstr) { %>
+        <li>
+          <a href="/see-instructors-reports" 
+          class="btn <%= path === "/see-instructors-reports" ? "active" : "" %>"
+          >
+          <i class="fa-regular fa-flag"></i> محاضر وشكاوى
+          </a>
+        </li>
+      <% } %>
+
+      <li>
+        <a href="/exams-table/<%= userId %>" 
+        class="btn <%= path === "/exams-table" ? "active" : "" %>"
+        >
+        <i class="fa-solid fa-table"></i> جدول الامتحانات
+        </a>
+      </li>
+      <li>
+        <a href="/logout" 
+        class="btn <%= path === "/logout" ? "active" : "" %>"
+        >
+        <i class="fa-solid fa-arrow-right-from-bracket"></i> تسجيل الخروج
+        </a>
+      </li>
+
+    <% } %>
+
+    
+    
+  </ul>
+</nav>
+
+<div class="overlay"></div>

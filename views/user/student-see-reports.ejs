@@ -1,0 +1,21 @@
+<%- include('../include/header.ejs') %> <%- include('../include/nav.ejs') %> 
+
+
+<main class="student__see__reports">
+  <h1 class="main__title">الرد على الشكاوى</h1>
+  <div class="all__reports">
+
+    <% for(let report of allReports) { %>
+      <div class="report">
+        <h3><%= report.courseName %></h3>
+        <p><%= report.text %></p>
+        <a href="/student-res-report/<%= report.courseId %>" class="btn__main">قم بالرد</a>
+      </div>
+
+    <% } %>
+
+  </div>
+</main>
+
+
+<%- include('../include/footer.ejs') %>

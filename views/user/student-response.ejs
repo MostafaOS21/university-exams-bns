@@ -1,0 +1,20 @@
+<%- include('../include/header.ejs') %> <%- include('../include/nav.ejs') %> 
+
+
+<main class="student__see__reports">
+  <h1 class="main__title">الرد على الشكوى: <%= course.name %></h1>
+  <div class="all__reports">
+
+      <form class="report" method="post" action="/send-response/<%= course._id %>">
+        <h3>الشكوى: </h3>
+        <p><%= report.text %></p>
+        <h3>ردك: </h3>
+        <textarea placeholder="اكتب ردك على الشكوى..." name="student__response"><%= report.studentReport ? report.studentReport : "" %></textarea>
+        <button href="" class="btn__main"> إرسال الرد </button>
+      </form>
+
+  </div>
+</main>
+
+
+<%- include('../include/footer.ejs') %>

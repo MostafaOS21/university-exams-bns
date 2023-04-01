@@ -1,0 +1,23 @@
+<%- include('../include/header.ejs') %> <%- include('../include/nav.ejs') %> 
+
+<main class="reporting__student">
+  <h1 class="main__title">
+    الطالب:  <%= student.name %> - <%= student.sittingArea %>
+  </h1>
+
+
+
+  <form action="/set-reporting-student/<%= student._id %>" method="post" class="report">
+
+    <% if(errorMsg) { %>
+      <h3 class="error__msg"> <i class="fa-solid fa-circle-exclamation"></i> <%= errorMsg %></h3>
+    <% } %>
+    
+    <h2>تقرير في مادة: <%= course.name %></h2>
+    <input type="hidden" name="courseId" value="<%= course._id %>">
+    <textarea required name="student__report" placeholder="التقرير... " class="custom__input"></textarea>
+    <button class="btn__main">إرسال</button>
+  </form>
+</main>
+
+<%- include('../include/footer.ejs') %>

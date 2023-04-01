@@ -1,0 +1,38 @@
+<%- include('../include/header.ejs') %> <%- include('../include/nav.ejs') %> 
+
+  <main class="main__page">
+    <% if(errorMsg) { %>
+      <h3 class="error__msg"> <i class="fa-solid fa-circle-exclamation"></i> <%= errorMsg %></h3>
+    <% } %>
+
+
+    <% if(isAuthed) { %>
+      <!-- He's an instructor -->
+      <% if(isInstr) { %>
+        <h2>أهلا بك: <%= "د. " + user.name %> </h2>
+        <% if(!isAdmin) { %>
+          <h3>الهوية: مراقب مساعد</h3>
+        <% } %>
+        <div class="btns__events">
+          <a href="/students-absense/<%= user._id %>" class="btn__main">تسجيل الغياب للطلاب</a>
+          <a href="/exams-table/<%= user._id %>" class="btn__main">  جدول الامتحانات </a>
+        </div>
+      <% } %>
+
+      <!-- He's a student -->
+      <% if(!isInstr) { %>
+        <h2>أهلا بك: باشمهندس/ <%= user.name %></h2>
+        <div class="btns__events">
+          <a href="/exams-table/<%= user._id %>" class="btn__main">  جدول الامتحانات </a>
+          <a href="/see-instructors-reports" class="btn__main">محاضر وشكاوى</a>
+        </div>
+      <% } %>
+    <% } %>
+
+    <% if(!isAuthed) { %>
+      <h2>أهلا بك في نظام الامتحانات</h2>
+      <a href="/login" class="btn__main">تسجيل الدخول</a>
+    <% } %>
+  </main>
+
+<%- include('../include/footer.ejs') %>

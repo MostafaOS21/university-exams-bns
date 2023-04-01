@@ -1,0 +1,20 @@
+<%- include('../include/header.ejs') %> <%- include('../include/nav.ejs') %> 
+
+  <main class="student__abs__dashboard">
+    <h3>الكورسات المتوفرة لتسجيل الغياب:</h3>
+
+    <div class="courses__btns">
+      <% for(course of courses) { %>
+        <% if(course.examStart < Date.now() && course.examEnd > Date.now()) { %>
+          <a class="btn__main" href="/course-absense/<%= course._id %>"><%= course.name %></a>
+        <% } %>
+
+        <% if(course.examStart > Date.now()) { %>
+          <a class="btn__main disabled"><%= course.name %></a>
+        <% } %>
+      <% } %>
+    </div>
+
+  </main>
+
+<%- include('../include/footer.ejs') %>
