@@ -736,3 +736,7 @@ nav .menu__list .close__menu:hover {
     display: none;
   }
 }
+
+.uni__logo img {
+  width: 200px;
+}
