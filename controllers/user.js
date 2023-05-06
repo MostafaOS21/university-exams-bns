@@ -73,8 +73,6 @@ exports.getExamsTable = (req, res, next) => {
             user.push(instr);
           }
 
-          console.log(instr);
-
           return res.render("user/exams-table.ejs", {
             pageTitle: "جدول الامتحانات",
             path: "/exams-table",
@@ -166,9 +164,9 @@ exports.getCourseAbs = (req, res, next) => {
                 if(course.attend) {
                   totalComers++;
                 }
-
                 if(course.report.text) {
                   totalCheating++;
+                  console.log("cheating: ", totalCheating)
                 }
               }
             })
@@ -453,6 +451,8 @@ exports.setReportStudent = (req, res, next) => {
 exports.deleteStudentReport = (req, res, next) => {
   const courseId = req.body.courseId;
   const studentId = req.params.studentId;
+  
+  // console.log(studentId, courseId);
 
   Student.findById(studentId).then(student => {
     return student.courseAttend.map(course => {

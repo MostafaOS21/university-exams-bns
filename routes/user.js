@@ -47,7 +47,7 @@ route.post("/set-reporting-student/:studentId",
 
 route.get("/see-instructors-reports", isStudentProtect, userControllers.seeInstrReports);
 
-route.post("/delete-reporting-student/:studentId", isStudentProtect, userControllers.deleteStudentReport);
+route.post("/delete-reporting-student/:studentId", instrProtector, userControllers.deleteStudentReport);
 
 route.get("/student-res-report/:courseId", isStudentProtect, userControllers.getStudentRes);
 
