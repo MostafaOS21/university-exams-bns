@@ -155,6 +155,7 @@ exports.getCourseAbs = (req, res, next) => {
             courses: {$in: [course.name]}
           }
         ).then(students => {
+          const url = `${req.protocol}://${req.headers.host}/images/`;
 
           let totalComers = 0;
           let totalCheating = 0;
@@ -180,7 +181,8 @@ exports.getCourseAbs = (req, res, next) => {
             secInstr: instr,
             students,
             totalComers,
-            totalCheating
+            totalCheating,
+            url
           })
         })
 
@@ -211,6 +213,7 @@ exports.getTakeCameStudents = (req, res, next) => {
         examCommitteeNumber: req.user.examCommitteeNumber,
         courses: {$in: [course.name]}
       }).then(students => {
+
         return res.render("user/take-came-or-went-students.ejs", {
           pageTitle: "تسجيل الحضور: " + course.name,
           path: "/students-absense",

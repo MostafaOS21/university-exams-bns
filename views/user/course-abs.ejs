@@ -30,33 +30,45 @@
     </div>
     
 
-    <div class="table__container">
+    <div class="table__container full__table">
       <table class="print__table">
 
-        <tr>
-          <th>الاسم</th>
-          <th>رقم الجلوس</th>
-          <th>الفصل الدراسي</th>
-          <th>حضور</th>
-          <th>انصراف</th>
-        </tr>
+        <thead>
+          <tr>
+            <th class="student__image">صورة</th>
+            <th>الاسم</th>
+            <th class="nationalid">الرقم القومي</th>
+            <th>كود الطالب</th>
+            <th class="sitting__area">رقم الجلوس</th>
+            <th class="grade">السنة</th>
+            <th>حضور</th>
+            <th>انصراف</th>
+            <th class="">إمضاء</th>
+          </tr>
+        </thead>
 
         <% for(let student of students) { %>
           <tr>
-            <td><%= student.name %></td>
-            <td><%= student.sittingArea %></td>
-            <td><%= student.grade %></td>
+            <td class="student__image">
+              <a target="_blank" href="<%= url + "profile.png" %>"><img src="<%= url + "profile" + ".png" %>" alt=""></a>
+            </td>
+            <td class="student__name"><%= student.name %></td>
+            <td class="nationalid"><%= student.nationalID %></td>
+            <td class="studentId"><%= student.studentId %></td>
+            <td class="sitting__area"><%= student.sittingArea %></td>
+            <td class="grade"><%= student.grade %></td>
             <% for(let studentCourse of student.courseAttend) { %>
               <% if(studentCourse.courseId.toString() === course._id.toString()) { %>
-                <td><%= studentCourse.attend ? "نعم" : "لا" %></td>
+                <td class="yes__no"><%= studentCourse.attend ? "نعم" : "لا" %></td>
               <% } %>
             <% } %>
 
             <% for(let studentCourse of student.courseAttend) { %>
               <% if(studentCourse.courseId.toString() === course._id.toString()) { %>
-                <td><%= studentCourse.depr ? "نعم" : "لا" %></td>
+                <td class="yes__no"><%= studentCourse.depr ? "نعم" : "لا" %></td>
               <% } %>
             <% } %>
+            <td class=""></td>
           </tr>
         <% } %>
 
@@ -66,6 +78,11 @@
     <div class="numberic__stats">
       <h3><%= "عدد الحاضرين: " + students.length + " / " + totalComers %></h3>
       <h3><%= "عدد المحاضر: " + totalCheating %></h3>
+    </div>
+
+    <div class="instr__sign print__only">
+      <h1>إمضاء المراقب الأول: </h1>
+      <h1>إمضاء المراقب الثاني:  </h1>
     </div>
 
 

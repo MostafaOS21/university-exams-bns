@@ -3,12 +3,14 @@ const { Schema, model } = require("mongoose");
 const studentSchema = new Schema({
   name: String,
   examCommitteeNumber: Number,
+  imageUrl: String,
   nationalID: {
     type: String,
     unique: true,
   },
   password: String,
   sittingArea: String,
+  studentId: String,
   courses: {
     type: [String],
   },

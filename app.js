@@ -2,7 +2,7 @@ const express = require("express");
 const app = express();
 const {join} = require("path");
 
-const MONGO_URI = process.env.MONGO_URI;
+const MONGO_URI = "mongodb+srv://team-university:erqHqHPnRuTMHJdJ@cluster0.dxik9mi.mongodb.net/university";
 
 // body parser
 const bodyParser = require("body-parser");
@@ -10,6 +10,9 @@ app.use(bodyParser.urlencoded({extended: true}));
 
 // set view engine => ejs
 app.set("view engine", "ejs");
+
+// Serving images
+app.use("/images",express.static(join(__dirname, "images")));
 
 // use public static folder
 app.use(express.static(join(__dirname, "views", "public")));
@@ -79,7 +82,6 @@ app.use(errorHandler);
 
 // Mongoose connect
 const {connect} = require("mongoose");
-
 
 connect(MONGO_URI).then(() => {
   app.listen(3000);

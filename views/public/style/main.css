@@ -183,11 +183,11 @@ input[type=number] {
   width: 100%;
 }
 
-@media (max-width: 767px) {
+/* @media (max-width: 767px) {
   .table__container {
     overflow: scroll;
   }
-}
+} */
 
 table {
   width: 100%;
@@ -221,6 +221,35 @@ table tr.even {
 }
 
 /* Print Event */
+.print__only {
+  display: none;
+}
+
+
+.sitting__area {
+  width: 100px;
+}
+
+.nationalid {
+  width: 180px;
+}
+
+.studentId {
+  width: 120px;
+}
+
+/* .grade {
+  width: 50px;
+} */
+
+/* .yes__no {
+  width: 50px;
+}  */
+
+.student__image img {
+  width: 80px;
+}
+
 @media print {
   body nav,
   .print__btn {
@@ -229,6 +258,8 @@ table tr.even {
 
   * {
     font-family: Arial, Helvetica, sans-serif !important;
+    padding: 0;
+    margin: 0;
   }
   
   main {
@@ -238,8 +269,8 @@ table tr.even {
     display: none !important;
   }
 
-  .table__container {
-    overflow: auto;
+  .student__image {
+    display: none;
   }
   
   .print__table {
@@ -249,6 +280,25 @@ table tr.even {
   .print__table th {
     background-color: #444 !important;
     color: white;
+  }
+
+  .print__only {
+    display: revert;
+    width: 150px;
+  }
+
+  .instr__sign {
+    margin-left: auto;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 180px;
+  }
+
+  .instr__sign h1 {
+    margin-top: 30px;
+    font-size: 20px;
   }
 }
 
@@ -542,4 +592,147 @@ nav .menu__list .close__menu:hover {
 
 .student__see__reports .report a.btn__main {
   width: 100%;
+}
+
+
+/* Table */
+
+.table__container .student__image a {
+  display: block;
+  width: 100px ;
+  height: 100px;
+  border-radius: 50%;
+  border: 2px solid black;
+  overflow: hidden;
+  margin: auto;
+}
+
+.table__container .student__image img {
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+}
+
+@media (width <= 991px) {
+
+  .table__container.full__table table thead {
+    display: none;
+  }
+  .table__container.full__table table tbody tr {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .table__container.full__table tr:not(:first-child) .student__image {
+    border-top: 5px solid #1f325f;
+  }
+  
+  .table__container.full__table .student__image {
+    padding: 10px 0;
+  }
+
+  .table__container.full__table table tbody td {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    width: 100%;
+    padding: 0;
+    font-size: 0.9rem;
+  }
+
+  .table__container.full__table table tbody td::before  {
+    width: 110px;
+    height: 100%;
+    padding: 8px 0;
+    background-color: #1f325f;
+    color: white;
+    font-size: 0.7rem;
+  }
+
+  .table__container.full__table table tbody td.student__name::before {
+    content: "الإسم";
+  }
+  .table__container.full__table table tbody td.nationalid::before {
+    content: "الرقم القومي";
+  }
+  .table__container.full__table table tbody td.studentId::before {
+    content: "كود الطالب";
+  }
+  .table__container.full__table table tbody td.sitting__area::before {
+    content: "رقم الجلوس";
+  }
+  .table__container.full__table table tbody td.grade::before {
+    content: "السنة";
+  }
+  .table__container.full__table table tbody td.yes__no:nth-child(1n)::before {
+    content: "حضور";
+  }
+  .table__container.full__table table tbody td.yes__no:nth-child(2n)::before {
+    content: "انصراف";
+  }
+
+}
+
+
+
+
+
+@media print {
+  table,
+  th,
+  td  {
+    border: 1px solid black;
+    border-collapse: collapse;
+  }
+
+  .table__container.full__table table thead {
+    display: table-header-group;
+    font-size: 0.8rem;
+    font-weight: bold;
+  }
+  .table__container.full__table table tbody {
+    display: table-row-group;
+  }
+  .table__container.full__table table tbody tr {
+    display: table-row;
+  }
+
+  .table__container.full__table table tbody td {
+    display: table-cell;
+    padding: 10px 0;
+  }
+
+  .table__container.full__table table tbody td::before  {
+    content: '' !important;
+  }
+
+  table .print__only {
+    display: table-cell;
+    width: 150px;
+    height: fit-content;
+  }
+
+  .table__container.full__table td.student__name {
+    width: 20%;
+  } 
+  .table__container.full__table td.nationalid {
+    width: 15%;
+  } 
+  .table__container.full__table td.studentId {
+    width: 10%;
+  } 
+  .table__container.full__table td.sitting__area {
+    width: 10%;
+  } 
+  .table__container.full__table td.grade {
+    width: 5%;
+  } 
+  .table__container.full__table td.yes__no {
+    width: 10%;
+  } 
+
+
+  .table__container.full__table .student__image {
+    display: none;
+  }
 }
