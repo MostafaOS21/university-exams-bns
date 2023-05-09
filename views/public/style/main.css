@@ -740,3 +740,11 @@ nav .menu__list .close__menu:hover {
 .uni__logo img {
   width: 200px;
 }
+
+.exam__container {
+  overflow-y: scroll;
+}
+
+.exam__container table {
+  width: 100%;
+}
