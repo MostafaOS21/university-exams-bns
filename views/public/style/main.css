@@ -748,3 +748,80 @@ nav .menu__list .close__menu:hover {
 .exam__container table {
   width: 100%;
 }
+
+/* Info Page */
+.info__page {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+}
+
+.info__page h1 {
+  font-size: 22px;
+}
+
+.info__page .info__imgs {
+  display: flex;
+  align-items: center;
+  margin-top: 35px;
+}
+
+.info__page img {
+  width: 100px;
+}
+
+.info__page img.system__logo {
+  width: 180px;
+}
+
+.info__page section {
+  text-align: center;
+}
+
+.info__page section h2 {
+  border-bottom: 3px solid #14213d;
+  width: fit-content;
+  margin: 25px auto;
+  text-align: center;
+}
+
+.info__page section:last-child h2 {
+  margin-bottom: 10px;
+}
+
+.info__page section:last-child h4 {
+  margin-bottom: 25px;
+}
+
+.info__page .text p {
+  background-color: #f6f6f6;
+  margin-bottom: 5px;
+  padding: 15px 5px;
+  border-radius: 8px;
+  font-size: 1.1rem;
+  width: 450px;
+  font-weight: 500;
+  cursor: default;
+  transition: background-color 0.3s ease-in-out;
+}
+
+.info__page .text p:hover {
+  background-color: #dddddd;
+}
+
+
+@media (max-width: 767px) {
+  .info__page .text p {
+    width: 350px;
+  }
+}
+
+.info__page .text p:first-of-type {
+  border-radius: 18px 18px 8px 8px;
+}
+.info__page .text p:last-of-type {
+  border-radius: 8px 8px 18px 18px;
+}
+
