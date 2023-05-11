@@ -20,8 +20,6 @@ const {body} = require("express-validator");
 
 route.get("/", userControllers.getIndex);
 
-route.get("/info", userControllers.getInfoPage);
-
 route.get("/exams-table/:userId", routeProtect, userControllers.getExamsTable);
 
 route.get("/students-absense/:userId", userControllers.getStudentAbsense);

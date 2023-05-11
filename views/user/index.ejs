@@ -1,44 +1,80 @@
-<%- include('../include/header.ejs') %> <%- include('../include/nav.ejs') %> 
+<%- include('../include/header.ejs') %> <%- include('../include/nav.ejs') %>
 
-  <main class="main__page">
-    <% if(errorMsg) { %>
-      <h3 class="error__msg"> <i class="fa-solid fa-circle-exclamation"></i> <%= errorMsg %></h3>
-    <% } %>
+<main class="main__page">
+  <% if(errorMsg) { %>
+  <h3 class="error__msg">
+    <i class="fa-solid fa-circle-exclamation"></i> <%= errorMsg %>
+  </h3>
+  <% } %>
 
-    <h2>نظام إدارة الامتحانات, بنى سويف</h2>
+  <h2>نظام إدارة الامتحانات, بنى سويف</h2>
 
-    <div class="uni__logo">
-      <img src="https://i.pinimg.com/564x/4b/3e/78/4b3e78faf8d0b3d96882aed0316ca3eb.jpg" alt="">
-    </div>
+  <div class="uni__logo">
+    <img
+      src="https://i.pinimg.com/564x/4b/3e/78/4b3e78faf8d0b3d96882aed0316ca3eb.jpg"
+      alt=""
+    />
+  </div>
 
-    <% if(isAuthed) { %>
-      <!-- He's an instructor -->
-      <% if(isInstr) { %>
-        <h2>أهلا بك: <%= "د. " + user.name %> </h2>
-        <% if(!isAdmin) { %>
-          <h3>الهوية: مراقب مساعد</h3>
-        <% } %>
-        <div class="btns__events">
-          <a href="/students-absense/<%= user._id %>" class="btn__main">تسجيل الغياب للطلاب</a>
-          <a href="/exams-table/<%= user._id %>" class="btn__main">  جدول الامتحانات </a>
-        </div>
-      <% } %>
+  <% if(isAuthed) { %>
+  <!-- He's an instructor -->
+  <% if(isInstr) { %>
+  <h2>أهلا بك: <%= "د. " + user.name %></h2>
+  <% if(!isAdmin) { %>
+  <h3>الهوية: مراقب مساعد</h3>
+  <% } %>
+  <div class="btns__events">
+    <a href="/students-absense/<%= user._id %>" class="btn__main"
+      >تسجيل الغياب للطلاب</a
+    >
+    <a href="/exams-table/<%= user._id %>" class="btn__main">
+      جدول الامتحانات
+    </a>
+  </div>
+  <% } %>
 
-      <!-- He's a student -->
-      <% if(!isInstr) { %>
-        <h2>أهلا بك: باشمهندس/ <%= user.name %></h2>
-        <div class="btns__events">
-          <a href="/exams-table/<%= user._id %>" class="btn__main">  جدول الامتحانات </a>
-          <a href="/see-instructors-reports" class="btn__main">محاضر وشكاوى</a>
-        </div>
-      <% } %>
-    <% } %>
+  <!-- He's a student -->
+  <% if(!isInstr) { %>
+  <h2>أهلا بك: باشمهندس/ <%= user.name %></h2>
+  <div class="btns__events">
+    <a href="/exams-table/<%= user._id %>" class="btn__main">
+      جدول الامتحانات
+    </a>
+    <a href="/see-instructors-reports" class="btn__main">محاضر وشكاوى</a>
+  </div>
+  <% } %> <% } %> <% if(!isAuthed) { %>
+  <h2>أهلا بك في نظام الامتحانات</h2>
+  <a href="/login" class="btn__main">تسجيل الدخول</a>
+  <% } %>
 
-    <% if(!isAuthed) { %>
-      <h2>أهلا بك في نظام الامتحانات</h2>
-      <a href="/login" class="btn__main">تسجيل الدخول</a>
-    <% } %>
+  <div class="about__system">
+    <section>
+      <h2>تم إنشاء هذا النظام برعاية: </h2>
+      <div class="text">
+        <p>الأستاذ الدكتور\ منصور حسن - رئيس الجامعة</p>
+        <p>الأستاذ الدكتور\ محمد قايد - عميد الكلية</p>
+        <p>الأستاذ الدكتور\ أحمد النجار - رئيس قسم علوم الحاسب</p>
+        <p>الأستاذ\ هشام محمد - مدير الكلية</p>
+        <p>المهندس\ أسامة حفني - مدرس مساعد</p>
+      </div>
+    </section>
 
-  </main>
+    <section>
+      <h2> قام بتنفيذه:</h2>
+      <h4>طلاب الفرقة الثالثة بقسم علوم الحاسب لعام 2022- 2023</h4>
+      <div class="text">
+        <p>سمية سعد بكر</p>
+        <p>سندس عمر رجب</p>
+        <p>سيد أحمد زارع</p>
+        <p>شهد أحمد بهجت</p>
+        <p>محمود سعيد السيد</p>
+        <p>محمود فيصل محمود</p>
+        <p>محمود محمد لملوم</p>
+        <p>محمود مصطفى أحمد</p>
+        <p>مصطفى أسامة محمد</p>
+      </div>
+    </section>
+  </div>
+</main>
 
 <%- include('../include/footer.ejs') %>

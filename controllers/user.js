@@ -15,13 +15,6 @@ exports.getIndex = (req, res) => {
   })
 }
 
-exports.getInfoPage = (req, res) => {
-  res.render('user/info.ejs', {
-    pageTitle: 'عن النظام',
-    path: '/info',
-  });
-}
-
 exports.getExamsTable = (req, res, next) => {
 
   const userId = req.params.userId;
