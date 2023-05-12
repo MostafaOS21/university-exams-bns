@@ -2,7 +2,7 @@ const express = require("express");
 const app = express();
 const {join} = require("path");
 
-const MONGO_URI = "mongodb+srv://team-university:erqHqHPnRuTMHJdJ@cluster0.dxik9mi.mongodb.net/university";
+const MONGO_URI = process.env.MONGO_URI;
 
 // body parser
 const bodyParser = require("body-parser");
